@@ -33,60 +33,28 @@ type TotalCount = {
 type Props = {};
 
 const AdminCustomerPage = async (props: Props) => {
-  const calculateScheduleCountByDate = (
-    schedules: Schedule[]
-  ): ScheduleCountByDate[] => {
-    let scheduleCountByDate: {
-      date: string;
-      count: number;
-      presentCount: number;
-      absentCount: number;
-    }[] = [];
-    schedules.forEach((schedule) => {
-      const date = schedule.start.toISOString().slice(0, 10);
-      const index = scheduleCountByDate.findIndex((d) => d.date === date);
-      const presentCount = schedule.attendance ? 1 : 0;
-      const absentCount = schedule.attendance ? 0 : 1;
-      if (index === -1) {
-        scheduleCountByDate.push({ date, count: 1, presentCount, absentCount });
-      } else {
-        scheduleCountByDate[index].count += 1;
-        scheduleCountByDate[index].presentCount += presentCount;
-        scheduleCountByDate[index].absentCount += absentCount;
-      }
-    });
-
-    // Sort by date
-    scheduleCountByDate.sort((a, b) => {
-      if (a.date < b.date) return -1;
-      if (a.date > b.date) return 1;
-      return 0;
-    });
-
-    return scheduleCountByDate;
+  const fn1 = (arg: Schedule[]): ScheduleCountByDate[] => {
+    return [
+      {
+        date: "2022-01-01",
+        count: 0,
+        presentCount: 0,
+        absentCount: 0,
+      },
+    ];
   };
 
-  const calculateTotal = (
-    scheduleCountByDate: ScheduleCountByDate[]
-  ): TotalCount => {
-    const total = {
-      count: scheduleCountByDate.reduce((acc, curr) => acc + curr.count, 0),
-      presentCount: scheduleCountByDate.reduce(
-        (acc, curr) => acc + curr.presentCount,
-        0
-      ),
-      absentCount: scheduleCountByDate.reduce(
-        (acc, curr) => acc + curr.absentCount,
-        0
-      ),
+  const fn2 = (arg: ScheduleCountByDate[]): TotalCount => {
+    return {
+      count: 0,
+      presentCount: 0,
+      absentCount: 0,
     };
-
-    return total;
   };
 
   const schedules = await getSchedulesInRecentThreeMonths();
-  const scheduleCountByDate = calculateScheduleCountByDate(schedules);
-  const total = calculateTotal(scheduleCountByDate);
+  const scheduleCountByDate = fn1(schedules);
+  const total = fn2(scheduleCountByDate);
 
   return (
     <div>
