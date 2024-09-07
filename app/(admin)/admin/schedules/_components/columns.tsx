@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ScheduleWithStudentAndFacilityAndSchool } from "@/lib/schedules";
 import { ja } from "date-fns/locale";
 import { format } from "date-fns";
-import { calculateGrade } from "@/lib/students";
+import { fn } from "@/lib/students";
 
 type Props = {
   onEditClick: (schedule: ScheduleWithStudentAndFacilityAndSchool) => void;
@@ -71,8 +71,7 @@ export const makeColumns = ({
   {
     id: "grade",
     header: "学年",
-    accessorFn: (info) =>
-      `${calculateGrade(info.student.schoolEnrollmentAcademicYear)}年`,
+    accessorFn: (info) => `${fn(info.student.schoolEnrollmentAcademicYear)}年`,
   },
   {
     id: "meal",
