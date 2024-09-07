@@ -9,7 +9,7 @@ const AdminSchedulePage = async (props: Props) => {
 
   return (
     <div>
-      <h1 className="text-[20px] font-bold text-[#000] bg-[#F4F4F4] border-[#E0E0E0] border-[1px] rounded-lg p-4 mb-[40px]">
+      <h1 className="text-[20px] font-bold text-[#15803D] bg-[#F0FDF4] border-[#BBF7D0] border-[1px] rounded-lg p-4 mb-[40px]">
         予定管理
       </h1>
 
