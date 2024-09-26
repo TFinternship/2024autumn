@@ -18,8 +18,8 @@
       }
     }
   },
-  "postCreateCommand": "pnpm install && cp .env.example .env",
-  "postAttachCommand": "pnpm prisma:migrate-reset && pnpm dev",
+  "postCreateCommand": "pnpm install && cp .env.example .env && pnpm prisma:migrate-reset --force",
+  "postAttachCommand": "pnpm dev",
   "forwardPorts": [3000],
   "portsAttributes": {
     "3000": {
